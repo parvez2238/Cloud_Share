@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Cloud Share Architecture">
+    <mxGraphModel dx="1130" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- React Frontend -->
+        <mxCell id="frontend" value="React.js Frontend" style="rounded=1;fillColor=#CCE5FF;strokeColor=#004085;align=center;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="310" y="20" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- API Gateway -->
+        <mxCell id="api-gateway" value="API Gateway" style="rounded=1;fillColor=#D4EDDA;strokeColor=#155724;align=center;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="310" y="100" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- Core Microservices -->
+        <mxCell id="auth-service" value="Auth Service" style="rounded=1;fillColor=#FFF3CD;strokeColor=#856404;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="file-mgmt-service" value="File Management Service" style="rounded=1;fillColor=#FFF3CD;strokeColor=#856404;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="190" y="200" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sharing-service" value="Sharing Service" style="rounded=1;fillColor=#FFF3CD;strokeColor=#856404;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="370" y="200" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="notification-service" value="Notification Service" style="rounded=1;fillColor=#FFF3CD;strokeColor=#856404;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="200" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="search-service" value="Search Service" style="rounded=1;fillColor=#FFF3CD;strokeColor=#856404;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="730" y="200" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- Storage -->
+        <mxCell id="aws-s3" value="AWS S3 (File Storage)" style="rounded=1;fillColor=#E2E3E5;strokeColor=#6C757D;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="190" y="350" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mongodb" value="MongoDB (Metadata)" style="rounded=1;fillColor=#E2E3E5;strokeColor=#6C757D;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="370" y="350" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- Supporting Services -->
+        <mxCell id="rabbitmq" value="RabbitMQ (Messaging)" style="rounded=1;fillColor=#F8D7DA;strokeColor=#721C24;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="350" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="monitoring" value="Prometheus/Grafana" style="rounded=1;fillColor=#F8D7DA;strokeColor=#721C24;align=center;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="730" y="350" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- Connections -->
+        <mxCell id="frontend-to-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="frontend" target="api-gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api-to-auth" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="api-gateway" target="auth-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api-to-file" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="api-gateway" target="file-mgmt-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="file-to-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="file-mgmt-service" target="aws-s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="file-to-mongo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="file-mgmt-service" target="mongodb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
