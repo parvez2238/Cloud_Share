@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "4000:4000"
+    depends_on:
+      - auth-service
+      # - file-service
+      # - sharing-service
+    networks:
+      - cloudshare-network
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "4001:4001"
+    env_file:
+      - .env
+    networks:
+      - cloudshare-network
+
+  # file-service:
+  #   build: ./file-service
+  #   container_name: file-service
+  #   ports:
+  #     - "4002:4002"
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - cloudshare-network
+
+  # sharing-service:
+  #   build: ./sharing-service
+  #   container_name: sharing-service
+  #   ports:
+  #     - "4003:4003"
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - cloudshare-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - cloudshare-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+
+networks:
+  cloudshare-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
